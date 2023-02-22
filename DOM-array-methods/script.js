@@ -27,7 +27,7 @@ async function getRandomUser() {
 
   const newUser = {
     name: `${user.name.first} ${user.name.last}`,
-    money: Math.floor(Math.random() * 1000000),
+    money: Math.floor(Math.random() * 100000),
   };
   //   console.log(newUser)
   addData(newUser);
@@ -64,18 +64,48 @@ function formatMoney(number) {
 
 //  MAP double everyone's money
 function doubleMoney() {
-  data = data.map(user => {
-    return { ... user, money: user.money * 2 };
+  data = data.map((user) => {
+    return { ...user, money: user.money * 2 };
   });
 
   updateDOM();
 }
 
+// SORT users by richest
+function sortByRiches() {
+  data.sort((a, b) => b.money - a.money);
+  // b - a because we want the richest person first
 
+  updateDOM();
+}
+
+// FILTER only millionaires
+function showMillionaires() {
+  data = data.filter((user) => user.money > 100000);
+
+  updateDOM();
+}
+
+// REDUCE wealth
+function calculateWealth() {
+  const wealth = data.reduce((acc, user) => (acc += user.money), 0);
+
+  // console.log(formatMoney(wealth));
+  const wealthElement = document.createElement('div');
+  wealthElement.innerHTML = `<h3>Total Wealth: <strong>${formatMoney(
+    wealth
+  )}</strong></h3>`;
+  main.appendChild(wealthElement);
+}
 
 // EVENT LISTENERS
 addUserBtn.addEventListener('click', getRandomUser);
 // from fetch
 doubleBtn.addEventListener('click', doubleMoney);
-
-
+// using map
+sortBtn.addEventListener('click', sortByRiches);
+// using sort
+showMillionaireBtn.addEventListener('click', showMillionaires);
+// using filter
+calculateWealthBtn.addEventListener('click', calculateWealth);
+// using reduce (adding everything together)
