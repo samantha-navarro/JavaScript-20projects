@@ -45,7 +45,7 @@ function updateDOM(provideData = data) {
   // Clear main div
   main.innerHTML = '<h2><strong>Person</strong>Wealth</h2>';
 
-  //   FOR EACH adding the
+  //   FOR EACH adding the user
   provideData.forEach((item) => {
     const element = document.createElement('div');
     element.classList.add('person');
@@ -62,6 +62,20 @@ function formatMoney(number) {
   // input function in the forEach item.money
 }
 
+//  MAP double everyone's money
+function doubleMoney() {
+  data = data.map(user => {
+    return { ... user, money: user.money * 2 };
+  });
+
+  updateDOM();
+}
+
+
+
 // EVENT LISTENERS
 addUserBtn.addEventListener('click', getRandomUser);
 // from fetch
+doubleBtn.addEventListener('click', doubleMoney);
+
+

@@ -30,13 +30,13 @@ aside {
 button {
     cursor: pointer;
     display: block;
-    background-color: white;
     border-radius: 3px;
     padding: 10px;
     width: 100%;
     margin-bottom:15px;
     font-size: 12px;
     font-weight: bold;
+    border-color:#fff
 }
 
 main {
