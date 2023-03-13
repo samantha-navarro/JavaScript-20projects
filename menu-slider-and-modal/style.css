@@ -13,7 +13,14 @@
 body {
     font-family: 'Tiro Gurmukhi', serif;
     margin: 0;
+    transition: transform 0.3s ease;
 }
+
+body.show-nav {
+    /* width of our nav */
+    transform: translate(200px);
+}
+
 
 nav {
     background-color: var(--primary-color);
@@ -119,12 +126,18 @@ button:focus {
 
 .modal-container {
     background-color: rgba(0, 0, 0, 0.5);
-    /* display: none; */
+    display: none;
+    /* won't show modal */
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+}
+
+.modal-container.show-modal {
+    display: block;
+    /* will show modal */
 }
 
 .modal {
@@ -139,6 +152,9 @@ button:focus {
     /* puts the modal in the middle */
     max-width: 100%;
     width: 400px;
+    animation-name: modalopen;
+    animation-duration: var(--modal-duration)
+    /* need a keyframe for animation */
 }
 
 .modal-header {
@@ -178,4 +194,15 @@ button:focus {
     right: 0;
 }
 
-
+/* give modal animation */
+@keyframes modalopen {
+    /* when it starts */
+    from {
+        opacity: 0;
+    }
+    
+    /* when it ends */
+    to {
+        opacity: 1;
+    }
+}
